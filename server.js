@@ -16,8 +16,8 @@ var express         = require("express"),
     const errorHandler = require('_helpers/error-handler');
 
 // Setup Connection to DB
-  var mongoDB = 'mongodb://127.0.0.1/tvshows';
-  mongoose.connect(mongoDB);
+  var mongoDB = '127.0.0.1/tvshows';
+  mongoose.connect('mongodb://'+process.env.DB_HOST+process.env.DB_DATABASE,{ useNewUrlParser: true });
 
 // Middlewares
   app.use(bodyParser.urlencoded({ extended: false }));
@@ -35,6 +35,7 @@ var express         = require("express"),
   {
     res.status(200).jsonp("Hello world!");
   });
+  
   //AUTH ROUTES
   //app.use('/users',require('./users/users.controller'));
 
