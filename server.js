@@ -1,4 +1,6 @@
 require('rootpath')();
+const dotenv = require('dotenv');
+dotenv.config(); // Sets up dotenv as soon as our application starts
 
 var express         = require("express"),
     app             = express(),
@@ -26,27 +28,28 @@ var express         = require("express"),
   app.use(cors());
 
   //Controllers
-  var TvShowsController = require('controller/tvshows');
+  //var TvShowsController = require('controller/tvshows');
 
 // API routes
-  router.get('/',jwt(),function(req, res) {
+  router.get('/',function(req, res) {
     res.status(200).jsonp("Hello world!");
   });
   //AUTH ROUTES
-  app.use('/users',require('./users/users.controller'));
+  //app.use('/users',require('./users/users.controller'));
 
   //SHOWS ROUTES
-  router.get('/tvshows',TvShowsController.index);
+  /*router.get('/tvshows',TvShowsController.index);
   router.get('/tvshows/create',TvShowsController.create);
   router.get('/tvshows/:id',TvShowsController.show);
   router.post('/tvshows',TvShowsController.store);
   router.get('/tvshows/:id/edit',TvShowsController.edit);
   router.put('/tvshows/:id',TvShowsController.update);
   router.delete('/tvshows/:id',TvShowsController.delete);
+  */
 
-    // global error handler
+// global error handler
     app.use(errorHandler);
 // Start server
-app.listen(6661, function() {
-  console.log("Node server running on http://localhost:6661");
-});
+    app.listen(6661, function() {
+    console.log("Node server running on http://localhost:"+6661);
+    });
