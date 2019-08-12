@@ -34,6 +34,7 @@ mongoose.connect('mongodb://'+process.env.DB_HOST+process.env.DB_DATABASE,{ useN
   
 //APP ROUTES
     app.use('/tvshows',require('routes/TvShowsRoutes'));
+    app.use('/auth',require('routes/AuthRoutes'));
 
 // global error handler
     app.use(errorHandler);
