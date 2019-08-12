@@ -41,6 +41,7 @@ var express         = require("express"),
 
 // global error handler
     app.use(errorHandler);
+    
 // Start server
     app.listen(process.env.PORT, function(){
         console.log("Node server running on http://localhost:"+process.env.PORT);

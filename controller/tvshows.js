@@ -1,29 +1,29 @@
 exports.index = function(req, res) 
 {
-    res.status(200).jsonp("Index 1");
+    res.status(200).jsonp("/Index");
 };
 
 exports.show = function(req, res)
 {
 	let id =req.params.id;
+	res.status(200).jsonp("/Show/"+id);
 };
 
 exports.create = function(req, res) 
 {
-	res.status(200).jsonp(req.params);
-	console.log('CREATE /');
+	res.status(200).jsonp("/Create");
 };
 
 exports.store = function(req, res) 
 {
-	res.status(200).jsonp(req.params);
-	console.log('STORE /');
+	res.status(200).jsonp("/Store");
+	console.log(req.body);
 };
 
 exports.edit = function(req, res) 
 {
 	let id = req.params.id;
-	console.log('EDIT /'+id+'/edit');
+	res.status(200).jsonp("/"+id+"/Edit");
 };
 
 exports.update = function(req, res) {
