@@ -31,7 +31,8 @@ var express         = require("express"),
   //var TvShowsController = require('controller/tvshows');
 
 // API routes
-  router.get('/',function(req, res) {
+  router.get('/',function(req, res)
+  {
     res.status(200).jsonp("Hello world!");
   });
   //AUTH ROUTES
@@ -50,6 +51,6 @@ var express         = require("express"),
 // global error handler
     app.use(errorHandler);
 // Start server
-    app.listen(6661, function() {
-    console.log("Node server running on http://localhost:"+6661);
+    app.listen(process.env.PORT, function(){
+        console.log("Node server running on http://localhost:"+process.env.PORT);
     });
