@@ -36,18 +36,8 @@ var express         = require("express"),
     res.status(200).jsonp("Hello world!");
   });
   
-  //AUTH ROUTES
-  //app.use('/users',require('./users/users.controller'));
-
-  //SHOWS ROUTES
-  /*router.get('/tvshows',TvShowsController.index);
-  router.get('/tvshows/create',TvShowsController.create);
-  router.get('/tvshows/:id',TvShowsController.show);
-  router.post('/tvshows',TvShowsController.store);
-  router.get('/tvshows/:id/edit',TvShowsController.edit);
-  router.put('/tvshows/:id',TvShowsController.update);
-  router.delete('/tvshows/:id',TvShowsController.delete);
-  */
+  //APP ROUTES
+  app.use('/tvshows',require('routes/TvShowsRoutes'));
 
 // global error handler
     app.use(errorHandler);
