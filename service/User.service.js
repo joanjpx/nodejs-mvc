@@ -21,6 +21,7 @@ async function getAll(req,res) {
 
 async function getById(id) {
     //get by id
+    return await User.findById(id).select()
 }
 
 async function create(userParam) {

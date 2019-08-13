@@ -19,7 +19,8 @@ exports.getAll = (req,res,next) => {
 
 exports.All = (req, res, next) => {
 	
-    UserService.getAll().then(users => res.json(users))
+	UserService.getAll()
+	.then(users => res.json(users))
 }
 
 exports.getCurrent = (req, res, next) => {
@@ -27,7 +28,10 @@ exports.getCurrent = (req, res, next) => {
 }
 
 exports.getById = (req, res, next) => {
-    
+
+	let id = req.params.id
+	UserService.getById(id)
+	.then(user => res.json(user))
 }
 
 exports.update = (req, res, next) => {
