@@ -29,7 +29,7 @@ exports.getCurrent = (req, res, next) => {
 
 exports.getById = (req, res, next) => {
 
-	let id = req.params.id
+	let id = req.params.id;
 	UserService.getById(id)
 	.then(user => res.json(user))
 }

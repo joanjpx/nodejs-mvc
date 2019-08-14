@@ -10,6 +10,7 @@ var express         = require("express"),
     bodyParser      = require("body-parser"),
     methodOverride  = require("method-override"),
     router          = express.Router(),
+    jwt             = require('jsonwebtoken');
     mongoose        = require('mongoose');
 
 //const jwt = require('_helpers/jwt');
@@ -19,6 +20,7 @@ const errorHandler = require('_helpers/error-handler');
 mongoose.connect('mongodb://'+process.env.DB_HOST+process.env.DB_DATABASE,{ useNewUrlParser: true });
 
 // Middlewares
+  //const auth = require('middleware/JWT.js')
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
   app.use(morgan('dev'));
@@ -29,9 +31,40 @@ mongoose.connect('mongodb://'+process.env.DB_HOST+process.env.DB_DATABASE,{ useN
 // API routes
   router.get('/',function(req, res)
   {
-    res.status(200).jsonp("Hello world!");
+    res.status(200).json({message:"Hello, API Works!"});
   });
   
+  router.post('/api/login',function(req, res)
+  {
+    const user = {id:3};
+
+    const token = jwt.sign({user},process.env.JWT_TOKEN);
+
+    res.status(200).json({token:token});
+  });
+
+  app.get('/api/protected',middlewareJWT,(req,res) => {
+    jwt.verify(req.token,process.env.JWT_TOKEN,(err,data) => {
+      if (err) {
+        res.status(403);
+      }else{
+        res.status(200).json({message:'successful logged',data});
+      }
+    });
+  });
+
+  function middlewareJWT(req,res,next){
+    const bearerHeader = req.headers['authorization'];
+    console.log(bearerHeader);
+    if (typeof bearerHeader !== 'undefined') {
+      const bearer = bearerHeader.split(" ");
+      const bearerToken = bearer[1];
+      req.token = bearerToken;
+      next();
+    }else{
+      res.status(403).json({Message:"Not Allowed"});
+    }
+}
 //APP ROUTES
     app.use('/tvshows',require('routes/TvShowsRoutes'));
     app.use('/auth',require('routes/AuthRoutes'));
