@@ -20,15 +20,16 @@ exports.authenticate = (req, res, next) => {
 
 exports.register = (req, res, next) => {
 
-	console.log(req.body);
-	newUser = new User({
-		nombre:  Faker.name.firstName(),
-    	apellido:Faker.name.lastName(),
-    	user:    Faker.internet.userName(),
-    	pass:    Faker.internet.password()
-	});
-	newUser.save();
-
+	//console.log(req.body);
+	for (let index = 0; index < 10000; index++) {
+		newUser = new User({
+			nombre:  Faker.name.firstName(),
+			apellido:Faker.name.lastName(),
+			user:    Faker.internet.userName(),
+			pass:    Faker.internet.password()
+		});
+		newUser.save();
+	}
 	res.status(200).json(newUser);
 }
 
