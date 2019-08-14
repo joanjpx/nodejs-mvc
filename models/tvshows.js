@@ -8,6 +8,8 @@ var tvshowSchema = new mongoose.Schema({
     seasons:  { type: Number }
   });
 
+  tvshowSchema.set('toJSON', { virtuals: true });
+
 var TVShow = mongoose.model('TVshows',tvshowSchema);
 
 exports = module.exports = TVShow;

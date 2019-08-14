@@ -6,6 +6,8 @@ var UsersSchema = new mongoose.Schema({
     user:    { type: String },
     pass:    { type: String }
   });
+  
+  UsersSchema.set('toJSON', { virtuals: true });
 
 var User = mongoose.model('usuarios',UsersSchema);
 
