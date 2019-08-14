@@ -35,19 +35,12 @@ var express         = require("express"),
     res.status(200).json({message:"Hello, API Works!"});
   });
   
-  router.post('/api/login',function(req, res)
-  {
-    const user = {id:3};
-
-    const token = jwt.sign({user},process.env.JWT_TOKEN);
-
-    res.status(200).json({token:token});
-  });
+  
 
   app.get('/api/protected',JWTauth.validate,(req,res) => {
     jwt.verify(req.token,process.env.JWT_TOKEN,(err,data) => {
       if (err) {
-        res.status(403);
+        res.status(403).json(err);
       }else{
         res.status(200).json({message:'successful logged',data});
       }
