@@ -1,9 +1,11 @@
 // CONTROLLER
+//DevDependencies
+	const Faker = require('faker');
 //User Service
 	const UserService = require('service/User.service');
 	const jwt = require('jsonwebtoken');
 //User Model
-	//const User = require('models/users');
+	const User = require('models/users');
 exports.login = (req, res) => {
 	
 	const user = {id:3};
@@ -17,7 +19,17 @@ exports.authenticate = (req, res, next) => {
 }
 
 exports.register = (req, res, next) => {
-    
+
+	console.log(req.body);
+	newUser = new User({
+		nombre:  Faker.name.firstName(),
+    	apellido:Faker.name.lastName(),
+    	user:    Faker.internet.userName(),
+    	pass:    Faker.internet.password()
+	});
+	newUser.save();
+
+	res.status(200).json(newUser);
 }
 
 exports.getAll = (req,res,next) => {
