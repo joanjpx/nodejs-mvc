@@ -1,6 +1,7 @@
 require('rootpath')();
+
 const dotenv = require('dotenv');
-dotenv.config(); // Sets up dotenv as soon as our application starts
+      dotenv.config(); // Sets up dotenv as soon as our application starts
 
 var express         = require("express"),
     app             = express(),
@@ -14,13 +15,13 @@ var express         = require("express"),
     mongoose        = require('mongoose');
 
 //const jwt = require('_helpers/jwt');
-const errorHandler = require('_helpers/error-handler');
+  const errorHandler = require('_helpers/error-handler');
 
 // Setup Connection to DB
-mongoose.connect('mongodb://'+process.env.DB_HOST+process.env.DB_DATABASE,{ useNewUrlParser: true });
+  mongoose.connect('mongodb://'+process.env.DB_HOST+process.env.DB_DATABASE,{ useNewUrlParser: true });
 
 // Middlewares
-  //const auth = require('middleware/JWT.js')
+  const JWTauth = require('middleware/JWT.js');
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
   app.use(morgan('dev'));
@@ -43,7 +44,7 @@ mongoose.connect('mongodb://'+process.env.DB_HOST+process.env.DB_DATABASE,{ useN
     res.status(200).json({token:token});
   });
 
-  app.get('/api/protected',middlewareJWT,(req,res) => {
+  app.get('/api/protected',JWTauth.validate,(req,res) => {
     jwt.verify(req.token,process.env.JWT_TOKEN,(err,data) => {
       if (err) {
         res.status(403);
@@ -53,21 +54,9 @@ mongoose.connect('mongodb://'+process.env.DB_HOST+process.env.DB_DATABASE,{ useN
     });
   });
 
-  function middlewareJWT(req,res,next){
-    const bearerHeader = req.headers['authorization'];
-    console.log(bearerHeader);
-    if (typeof bearerHeader !== 'undefined') {
-      const bearer = bearerHeader.split(" ");
-      const bearerToken = bearer[1];
-      req.token = bearerToken;
-      next();
-    }else{
-      res.status(403).json({Message:"Not Allowed"});
-    }
-}
 //APP ROUTES
-    app.use('/tvshows',require('routes/TvShowsRoutes'));
     app.use('/auth',require('routes/AuthRoutes'));
+    app.use('/tvshows',require('routes/TvShowsRoutes'));
 
 // global error handler
     app.use(errorHandler);
