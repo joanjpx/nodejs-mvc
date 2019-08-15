@@ -14,7 +14,6 @@ var express         = require("express"),
     jwt             = require('jsonwebtoken');
     mongoose        = require('mongoose');
 
-//const jwt = require('_helpers/jwt');
   const errorHandler = require('_helpers/error-handler');
 
 // Setup Connection to DB
@@ -35,7 +34,7 @@ var express         = require("express"),
 // API routes
   router.get('/',function(req, res)
   {
-    res.status(200).json({message:"Hello, Migration API Works!"});
+    res.status(200).json({message:"Hello, Seed API Works!"});
   });
   
   
