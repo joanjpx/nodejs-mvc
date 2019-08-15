@@ -32,8 +32,10 @@ var express         = require("express"),
   app.use(cors());
 
 // API routes
+  const Seeder = require('models/migration/Seeder');
   router.get('/',function(req, res)
   {
+    Seeder.Seed();    
     res.status(200).json({message:"Hello, Seed API Works!"});
   });
   

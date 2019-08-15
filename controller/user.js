@@ -1,4 +1,5 @@
-// CONTROLLER
+// USER CONTROLLER
+
 //DevDependencies
 	const Faker = require('faker');
 //User Service
@@ -61,5 +62,7 @@ exports.update = (req, res, next) => {
 }
 
 exports._delete = (req, res, next) => {
-    
+    let id = req.params.id;
+	User.find({_id:id})
+	.then(user => res.json(user))
 }

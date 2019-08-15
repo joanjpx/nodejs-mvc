@@ -5,7 +5,7 @@ var UsersSchema = new mongoose.Schema({
     apellido:{ type: String },
     user:    { type: String },
     pass:    { type: String }
-  });
+  },{autoCreate:true});
   
   UsersSchema.set('toJSON', { virtuals: true });
 
