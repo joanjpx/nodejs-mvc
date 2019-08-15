@@ -20,6 +20,9 @@ var express         = require("express"),
 // Setup Connection to DB
   mongoose.connect('mongodb://'+process.env.DB_HOST+process.env.DB_DATABASE,{ useNewUrlParser: true });
 
+//DB Migration/Seeders
+  const UserMigration = require('models/migration/user.migration');
+
 // Middlewares
   const JWTauth = require('middleware/JWT.js');
   app.use(bodyParser.urlencoded({ extended: false }));
@@ -32,11 +35,11 @@ var express         = require("express"),
 // API routes
   router.get('/',function(req, res)
   {
-    res.status(200).json({message:"Hello, API Works!"});
+    res.status(200).json({message:"Hello, Migration API Works!"});
   });
   
   
-
+//Protected api route example.
   app.get('/api/protected',JWTauth.validate,(req,res) => {
     jwt.verify(req.token,process.env.JWT_TOKEN,(err,data) => {
       if (err) {
@@ -47,7 +50,7 @@ var express         = require("express"),
     });
   });
 
-//APP ROUTES
+//GROUP APP ROUTES
     app.use('/auth',require('routes/AuthRoutes'));
     app.use('/tvshows',require('routes/TvShowsRoutes'));
 
