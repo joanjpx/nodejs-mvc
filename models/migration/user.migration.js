@@ -1,6 +1,7 @@
 var AppRoot = require('app-root-path');
 var User = require(AppRoot+'/models/users');
 var Faker = require('faker');
+var chalk = require('chalk');
 
 exports.Up = () => {
 
@@ -14,10 +15,10 @@ exports.Up = () => {
         });
         UserModel.save();
     }
-    console.log('User.Model Seeding Successfully');
+    console.log(chalk.bgGreen('User.Model Seeding Successfully'));
 }
 
 exports.Down = () => {
-    console.log('User.Model Dropping all rows');
+    console.log(chalk.bgRed('User.Model Dropping all rows'));
     User.deleteMany({}).exec();
 }
