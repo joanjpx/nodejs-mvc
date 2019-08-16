@@ -17,7 +17,7 @@ var express         = require("express"),
   const errorHandler = require('_helpers/error-handler');
 
 // Setup Connection to DB
-  mongoose.connect('mongodb://'+process.env.DB_HOST+process.env.DB_DATABASE,{ useNewUrlParser: true });
+  exports.db = mongoose.connect('mongodb://'+process.env.DB_HOST+process.env.DB_DATABASE,{ useNewUrlParser: true });
 
 //DB Migration/Seeders
   const UserMigration = require('models/migration/user.migration');
