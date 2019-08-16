@@ -6,14 +6,10 @@ exports.Seed = () => {
     
     console.log("######### DB SEED ##########");
     
-    //UserMigration.Down();
+    UserMigration.Down();
     UserMigration.Up();
     //UserMigration.Up();
     //UserMigration.Up();
-    
-    //exit(1);
-    //process.abort();
-    //return('');
 }
 
 require('make-runnable/custom')({
