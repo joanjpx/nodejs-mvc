@@ -12,8 +12,8 @@
     "type": "git",
     "url": "git+https://github.com/joanjpx/nodejs-mvc.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["Nodejs","Movies","Demo","MVC Based","Boilerplate"],
+  "author": "Joan P. Alvarado",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/joanjpx/nodejs-mvc/issues"
