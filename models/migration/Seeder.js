@@ -8,6 +8,9 @@ exports.Seed = () => {
     
     UserMigration.Down();
     UserMigration.Up();
+    UserMigration.Up();
+    UserMigration.Up();
+    UserMigration.Up();
     //UserMigration.Up();
     //UserMigration.Up();
 }
