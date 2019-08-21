@@ -6,13 +6,13 @@ exports.Seed = () => {
     
     console.log("######### DB SEED ##########");
     
-    UserMigration.Down();
+    //UserMigration.Down();
     UserMigration.Up();
     UserMigration.Up();
     UserMigration.Up();
+    
     UserMigration.Up();
-    //UserMigration.Up();
-    //UserMigration.Up();
+    UserMigration.Up();
 }
 
 require('make-runnable/custom')({

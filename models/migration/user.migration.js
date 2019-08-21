@@ -19,7 +19,7 @@ exports.Up = () => {
         });
         UserModel.save();
     }
-    console.log(chalk.bgGreen('User.Model Seeding Successfully'));
+    console.log(chalk.gray.bgGreen.bold('User.Model Seeding Successfully'));
     
     
 }
